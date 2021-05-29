@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Teespring Spoof HOLA TEST</title>
+    <title>Teespring</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -22,7 +22,14 @@
             </div>
             <div class="navbar">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Campaign", "Index", "campaigns")</li>
+                    <div class="row">
+                        <div class="col" style="width: 200px;">
+                            <li>@Html.ActionLink("Create Campaign", "Create", "campaigns")</li>
+                        </div>
+                        <div class="col">
+                            <li>@Html.ActionLink("View Campaigns", "Index", "campaigns")</li>
+                        </div>
+                    </div>
                 </ul>
             </div>
         </div>
