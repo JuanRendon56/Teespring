@@ -42,11 +42,11 @@ namespace Teespring.Controllers
         }
 
         // POST: users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_user,email,password,role")] user user)
+        public ActionResult Create([Bind(Include = "id_user,email,password,role,firstname,lastname")] user user)
         {
             if (ModelState.IsValid)
             {
@@ -74,11 +74,11 @@ namespace Teespring.Controllers
         }
 
         // POST: users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_user,email,password,role")] user user)
+        public ActionResult Edit([Bind(Include = "id_user,email,password,role,firstname,lastname")] user user)
         {
             if (ModelState.IsValid)
             {

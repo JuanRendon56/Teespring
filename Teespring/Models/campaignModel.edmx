@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TeespringDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TeespringDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="campaign">
           <Key>
             <PropertyRef Name="id_campaign" />
@@ -22,6 +22,8 @@
             <PropertyRef Name="id_user" />
           </Key>
           <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="250" />
+          <Property Name="lastname" Type="varchar" MaxLength="250" />
           <Property Name="email" Type="varchar" MaxLength="250" />
           <Property Name="password" Type="varchar" MaxLength="250" />
           <Property Name="role" Type="varchar" MaxLength="250" />
@@ -75,8 +77,7 @@
             <End Role="user_campaign" EntitySet="user_campaign" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TeespringDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -102,6 +103,8 @@
           <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="user_campaign" Relationship="Self.FK_dbo_user_campaign_dbo_user_id_user" FromRole="user" ToRole="user_campaign" />
+          <Property Name="firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user_campaign">
           <Key>
@@ -176,6 +179,8 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="TeespringDBModel.user">
               <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />

@@ -16,7 +16,39 @@ namespace Teespring.Controllers
         private TeespringDBEntities2 db = new TeespringDBEntities2();
         public ActionResult Index()
         {
-            return View(db.campaigns.ToList());
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(user objUser)
+        {
+            if (ModelState.IsValid)
+            {
+                using (TeespringDBEntities2 db = new TeespringDBEntities2())
+                {
+                    var obj = db.users.Where(a => a.email.Equals(objUser.email) && a.password.Equals(objUser.password)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["UserID"] = obj.id_user.ToString();
+                        Session["UserName"] = obj.firstname.ToString();
+                        return RedirectToAction("UserDashBoard");
+                    }
+                }
+            }
+            return View(objUser);
+        }
+
+        public ActionResult UserDashBoard()
+        {
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
     }
 }
