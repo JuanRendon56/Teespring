@@ -1,0 +1,24 @@
+﻿@model Teespring.Models.campaign
+
+@{
+    ViewBag.Title = "Share";
+}
+
+<h2>Share your campaign!</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.title) </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Back to campaigns", "Index")
+</p>

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TeespringDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="campaign">
+          <Key>
+            <PropertyRef Name="id_campaign" />
+          </Key>
+          <Property Name="id_campaign" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="250" />
+          <Property Name="description" Type="varchar" MaxLength="250" />
+          <Property Name="link" Type="varchar" MaxLength="250" />
+          <Property Name="created" Type="date" />
+          <Property Name="expiration_date" Type="datetime" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="250" />
+          <Property Name="password" Type="varchar" MaxLength="250" />
+          <Property Name="role" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="user_campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="id_campaign" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_user_campaign_dbo_campaign_id_campaign">
+          <End Role="campaign" Type="Self.campaign" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_campaign" Type="Self.user_campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="campaign">
+              <PropertyRef Name="id_campaign" />
+            </Principal>
+            <Dependent Role="user_campaign">
+              <PropertyRef Name="id_campaign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_user_campaign_dbo_user_id_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_campaign" Type="Self.user_campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="user_campaign">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TeespringDBModelStoreContainer">
+          <EntitySet Name="campaign" EntityType="Self.campaign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_campaign" EntityType="Self.user_campaign" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_user_campaign_dbo_campaign_id_campaign" Association="Self.FK_dbo_user_campaign_dbo_campaign_id_campaign">
+            <End Role="campaign" EntitySet="campaign" />
+            <End Role="user_campaign" EntitySet="user_campaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_user_campaign_dbo_user_id_user" Association="Self.FK_dbo_user_campaign_dbo_user_id_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_campaign" EntitySet="user_campaign" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeespringDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="campaign">
+          <Key>
+            <PropertyRef Name="id_campaign" />
+          </Key>
+          <Property Name="id_campaign" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="created" Type="DateTime" Precision="0" />
+          <Property Name="expiration_date" Type="DateTime" Precision="3" />
+          <Property Name="price" Type="Double" />
+          <NavigationProperty Name="user_campaign" Relationship="Self.FK_dbo_user_campaign_dbo_campaign_id_campaign" FromRole="campaign" ToRole="user_campaign" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user_campaign" Relationship="Self.FK_dbo_user_campaign_dbo_user_id_user" FromRole="user" ToRole="user_campaign" />
+        </EntityType>
+        <EntityType Name="user_campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="id_campaign" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="campaign" Relationship="Self.FK_dbo_user_campaign_dbo_campaign_id_campaign" FromRole="user_campaign" ToRole="campaign" />
+          <NavigationProperty Name="user" Relationship="Self.FK_dbo_user_campaign_dbo_user_id_user" FromRole="user_campaign" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_dbo_user_campaign_dbo_campaign_id_campaign">
+          <End Role="campaign" Type="Self.campaign" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_campaign" Type="Self.user_campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="campaign">
+              <PropertyRef Name="id_campaign" />
+            </Principal>
+            <Dependent Role="user_campaign">
+              <PropertyRef Name="id_campaign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_user_campaign_dbo_user_id_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user_campaign" Type="Self.user_campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="user_campaign">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TeespringDBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="campaigns" EntityType="Self.campaign" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="user_campaign" EntityType="Self.user_campaign" />
+          <AssociationSet Name="FK_dbo_user_campaign_dbo_campaign_id_campaign" Association="Self.FK_dbo_user_campaign_dbo_campaign_id_campaign">
+            <End Role="campaign" EntitySet="campaigns" />
+            <End Role="user_campaign" EntitySet="user_campaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_user_campaign_dbo_user_id_user" Association="Self.FK_dbo_user_campaign_dbo_user_id_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_campaign" EntitySet="user_campaign" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeespringDBModelStoreContainer" CdmEntityContainer="TeespringDBEntities2">
+          <EntitySetMapping Name="campaigns">
+            <EntityTypeMapping TypeName="TeespringDBModel.campaign">
+              <MappingFragment StoreEntitySet="campaign">
+                <ScalarProperty Name="id_campaign" ColumnName="id_campaign" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="TeespringDBModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_campaign">
+            <EntityTypeMapping TypeName="TeespringDBModel.user_campaign">
+              <MappingFragment StoreEntitySet="user_campaign">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_campaign" ColumnName="id_campaign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
