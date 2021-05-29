@@ -50,5 +50,28 @@ namespace Teespring.Controllers
                 return RedirectToAction("Login");
             }
         }
+
+        // GET: campaigns/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: campaigns/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id_campaign,title,description,link,created,expiration_date,price")] campaign campaign)
+        {
+            if (ModelState.IsValid)
+            {
+                db.campaigns.Add(campaign);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(campaign);
+        }
     }
 }
