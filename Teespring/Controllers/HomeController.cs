@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Teespring.Models;
 
 namespace Teespring.Controllers
 {
-  
     public class HomeController : Controller
     {  
         private TeespringDBEntities2 db = new TeespringDBEntities2();
@@ -54,6 +54,12 @@ namespace Teespring.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: campaigns/Create
