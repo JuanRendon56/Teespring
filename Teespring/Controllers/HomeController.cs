@@ -59,12 +59,12 @@ namespace Teespring.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Home");
 
             if (Session["UserID"] == null)
             {
                 Session.Abandon();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Home");
             }
         }
 

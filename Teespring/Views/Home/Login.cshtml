@@ -2,8 +2,15 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = null;
 }
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teespring</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
     <fieldset>

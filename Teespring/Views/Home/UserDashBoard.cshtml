@@ -8,7 +8,8 @@
     @if (Session["UserName"] != null)
     {<text>
             Welcome @Session["UserName"].ToString() </text>
-
-     @Html.ActionLink("Log Out", "LogOut", "Home")
+    <div>
+        @Html.ActionLink("Continuar", "Index", "Home")
+    </div>
 }
 </fieldset>
