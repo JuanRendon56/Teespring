@@ -2,9 +2,13 @@
         ViewBag.Title = "UserDashBoard";
     }
 
-    <fieldset>
-        <legend> User DashBoard </legend>
+<fieldset>
+    <legend> User DashBoard </legend>
 
-@if(Session["UserName"] != null) { <text>
-    Welcome @Session["UserName"].ToString() </text>
-} </fieldset>
+    @if (Session["UserName"] != null)
+    {<text>
+            Welcome @Session["UserName"].ToString() </text>
+
+     @Html.ActionLink("Log Out", "LogOut", "Home")
+}
+</fieldset>

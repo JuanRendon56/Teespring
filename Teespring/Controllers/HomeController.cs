@@ -60,6 +60,12 @@ namespace Teespring.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+
+            if (Session["UserID"] == null)
+            {
+                Session.Abandon();
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: campaigns/Create
