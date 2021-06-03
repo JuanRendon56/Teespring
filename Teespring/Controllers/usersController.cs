@@ -51,11 +51,17 @@ namespace Teespring.Controllers
             if (ModelState.IsValid)
             {
                 db.users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
-            return View(user);
+            if (user.id_user == 0)
+            {
+                int id = db.users.Max(m => m.id_user);
+                user.id_user = id + 1;
+                db.users.Add(user);
+            }
+            
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: users/Edit/5

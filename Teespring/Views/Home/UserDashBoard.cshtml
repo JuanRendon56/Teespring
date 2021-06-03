@@ -1,15 +1,30 @@
 ﻿@{
-        ViewBag.Title = "UserDashBoard";
-    }
-
-<fieldset>
-    <legend> User DashBoard </legend>
-
-    @if (Session["UserName"] != null)
-    {<text>
-            Welcome @Session["UserName"].ToString() </text>
-    <div>
-        @Html.ActionLink("Continuar", "Index", "Home")
-    </div>
+    ViewBag.Title = "UserDashBoard";
 }
-</fieldset>
+
+<style>
+        .container {
+            font-family: 'Poppins';
+            color: #0a0918;
+        }
+</style>
+
+<div class="container form">
+    <fieldset>
+        @if (Session["UserName"] != null)
+        {<legend>
+                Welcome @Session["UserName"].ToString()
+            </legend>
+
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="~/img/products.png" alt="Third slide">
+                    </div>
+                </div>
+            </div>
+        }
+    </fieldset>
+
+
+</div>         
