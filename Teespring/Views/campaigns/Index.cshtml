@@ -5,22 +5,60 @@
 }
 
 <style>
-    .table {
+    .container {
         font-family: 'Poppins';
         color: #0a0918;
     }
 
-    .tr {
-        color: #ee2761;
-        text-transform: capitalize;
+    legend {
+        padding: 2% 0%;
+        font-size: 2em;
+        font-weight: 600;
+        color: #0a0918;
+        line-height: 1.5;
     }
 
-    .trs{
+    .buttonx {
+        padding: 0.4375rem 1.75rem;
+        color: whitesmoke;
+        background-color: #0a0918;
+        height: 45px;
+        font-size: 1em;
+        max-width: 25rem;
+        width: 100%;
+        border: 0;
+    }
+
+        .buttonx a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+    label {
         font-weight: bold;
+        font-size: 1em;
+        line-height: 1;
+        text-transform: capitalize;
+        margin-bottom: 2%;
+    }
+
+    input {
+        font-size: 1rem;
+        width: 100%;
+        max-width: 25rem;
+        border: 1px solid #d8dae0;
+        margin-bottom: 16px;
+        padding: 0.6875rem 0.875rem;
+        color: #0a0918;
+        border-radius: 2px;
+        -webkit-transition: border-color .15s, background-color .15s;
+        transition: border-color .15s, background-color .15s;
+        line-height: normal;
     }
 </style>
 
-<h2 style="font-weight: bold">Your campaigns</h2>
+<legend>Your campaigns</legend>
 
 <table class="table">
     <tr class="tr">
@@ -73,5 +111,4 @@
         </td>
     </tr>
 }
-
 </table>
