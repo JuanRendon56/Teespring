@@ -34,8 +34,7 @@
             background-color: #0a0918;
             height: 45px;
             font-size: 1em;
-            max-width: 25rem;
-            width: 100%;
+            width: 15%;
             border: 0;
         }
 
@@ -80,12 +79,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.link)
         </dt>
+
+        
         <dd>
             @Html.DisplayFor(model => model.link)
         </dd>
     </dl>
 
 </div>
-<p>
+<p class="buttonx">
     @Html.ActionLink("Back to list", "Index")
 </p>
