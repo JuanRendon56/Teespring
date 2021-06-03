@@ -66,17 +66,11 @@ namespace Teespring.Controllers
             if (ModelState.IsValid)
             {
                 db.campaigns.Add(campaign);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            if (campaign.id_campaign == 0)
-            {
-                int id = db.campaigns.Max(m => m.id_campaign);
-                campaign.id_campaign = id + 1;
-                db.campaigns.Add(campaign);
-            }
-
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(campaign);
         }
 
         // GET: campaigns/Edit/5
