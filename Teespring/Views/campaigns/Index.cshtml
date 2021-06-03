@@ -4,13 +4,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    .table {
+        font-family: 'Poppins';
+        color: #0a0918;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    .tr {
+        color: #ee2761;
+        text-transform: capitalize;
+    }
+
+    .trs{
+        font-weight: bold;
+    }
+</style>
+
+<h2 style="font-weight: bold">Campaign List</h2>
+
 <table class="table">
-    <tr>
+    <tr class="tr">
         <th>
             @Html.DisplayNameFor(model => model.title)
         </th>
@@ -33,7 +46,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="trs">
         <td>
             @Html.DisplayFor(modelItem => item.title)
         </td>
