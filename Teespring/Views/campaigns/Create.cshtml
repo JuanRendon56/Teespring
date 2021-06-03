@@ -13,9 +13,9 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <style>
-
-        .form {
-            text-align: -moz-center;
+        .container {
+            font-family: 'Poppins';
+            color: #0a0918;
         }
 
         legend {
@@ -70,9 +70,6 @@
 
 
 
-
-
-
 @using (Html.BeginForm())
 {
     <legend>Create Campaign</legend>
@@ -80,7 +77,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
@@ -133,15 +129,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="buttonx" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
