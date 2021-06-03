@@ -4,13 +4,35 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<style>
+    .dl {
+        font-family: 'Poppins';
+        font-weight: bold;
+    }
+
+    .dt{
+        text-transform: capitalize;
+        color: #ee2761;
+    }
+
+    .btn {
+        padding: 0.4375rem 1.75rem;
+        color: whitesmoke;
+        background-color: #0a0918;
+        height: 45px;
+        font-size: 1em;
+        max-width: 10rem;
+        width: 100%;
+        border: 0;
+    }
+</style>
+
+<h2 style="font-family: 'Poppins'">Details of campaign</h2>
 
 <div>
-    <h4>campaign</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="dl-horizontal, dl">
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.title)
         </dt>
 
@@ -18,15 +40,15 @@
             @Html.DisplayFor(model => model.title)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.description)
-        </dt>
+        </dtclass="dt">
 
         <dd>
             @Html.DisplayFor(model => model.description)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.link)
         </dt>
 
@@ -34,7 +56,7 @@
             @Html.DisplayFor(model => model.link)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.created)
         </dt>
 
@@ -42,7 +64,7 @@
             @Html.DisplayFor(model => model.created)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.expiration_date)
         </dt>
 
@@ -50,7 +72,7 @@
             @Html.DisplayFor(model => model.expiration_date)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.price)
         </dt>
 
@@ -61,7 +83,10 @@
     </dl>
 
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_campaign }) |
+<button class="btn">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_campaign }, new { @style = "color: #ffffff" })
+</button>
+
+<button class="btn">
     @Html.ActionLink("Back to List", "Index")
-</p>
+</button>

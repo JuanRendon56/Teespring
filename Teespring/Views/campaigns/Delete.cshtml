@@ -4,14 +4,34 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<style>
+    .dl {
+        font-family: 'Poppins';
+        font-weight: bold;
+    }
 
-<h3>Are you sure you want to delete this?</h3>
+    .dt {
+        text-transform: capitalize;
+        color: #ee2761;
+    }
+
+    .btn {
+        padding: 0.4375rem 1.75rem;
+        color: whitesmoke;
+        background-color: #0a0918;
+        height: 45px;
+        font-size: 1em;
+        max-width: 10rem;
+        width: 100%;
+        border: 0;
+    }
+</style>
+
+<h2 style="font-family: 'Poppins'">Are you sure you want to delete this?</h2>
 <div>
-    <h4>campaign</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="dl-horizontal, dl">
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.title)
         </dt>
 
@@ -19,7 +39,7 @@
             @Html.DisplayFor(model => model.title)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.description)
         </dt>
 
@@ -27,7 +47,7 @@
             @Html.DisplayFor(model => model.description)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.link)
         </dt>
 
@@ -35,7 +55,7 @@
             @Html.DisplayFor(model => model.link)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.created)
         </dt>
 
@@ -43,7 +63,7 @@
             @Html.DisplayFor(model => model.created)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.expiration_date)
         </dt>
 
@@ -51,7 +71,7 @@
             @Html.DisplayFor(model => model.expiration_date)
         </dd>
 
-        <dt>
+        <dt class="dt">
             @Html.DisplayNameFor(model => model.price)
         </dt>
 
@@ -65,8 +85,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <button class="btn">
+                @Html.ActionLink("Back to List", "Index", new { @style = "color:#ffffff"})
+            </button>
+            
         </div>
     }
 </div>
